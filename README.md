@@ -14,7 +14,7 @@ Principais Features do Next:
 - Sistema de Roteamento: Baseado na estrutura de arquivos e suporta: layouts, nested routes, dynamic routes, loading, error handling
 - Renderização: Renderização de Componentes no Lado do Cliente e do Servidor, e streaming de paginas com Nodejs ou Edge runtime
 - Data Feching: Simplificação de requisições async em Server Componentes e Extensão da api do Fetch com cache
-- Estilização:
+- Estilização: Usa Css modules, que permite criar um scopo de estilização por componente e acessa-los via um objeto do javascript
 - Caching:
 - Otimizações de Assets
 
@@ -33,11 +33,13 @@ Seo: Com server-components os Bots que fazem o SEO conseguem pegar o conteúdo d
 
 Sempre usar Server-Components: Sempre usar server-componentes quando der, e fazer apenas pequenos componentes dinamicos que são client-side, pois assim pouco javascript precisará ser rodado pelo browser, dimiuindo a latência da sua aplicação.
 
-Renderização:
+Renderização de Server Side Components:
 
-- Static: Deixar a pagina cacheada indefinidamente
-- Caching: Por padrão o NextJs faz um cache da sua pagina
-- Dynamic: É preciso forçar a
+- Static: Deixar a pagina cacheada indefinidamente, ela é renderizada no build-time e pode ser disponibilizada em CDN
+- Dynamic: As rotas são rendereizadas a cada request do usuario. Usadas quando as informações são personalizadas a um usuario. Porém elas podem ser cacheadas para um usuario especifico.
+- Streaming: Nest vai aos poucos compondo os dados da pagina
+
+O Next escolhe automaticamente se uma pagina é statica ou dinamica, só definimos as operações de cache.
 
 Os componentes são server-side, então sendo renderizados no servidor podemos realizar requisições neles
 
