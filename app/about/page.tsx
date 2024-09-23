@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-static";
 
@@ -8,6 +10,12 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
+  const session = await getServerSession();
+
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+
   return (
     <main>
       <h1>About</h1>
